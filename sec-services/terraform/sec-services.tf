@@ -5,7 +5,7 @@ data "aws_caller_identity" "current" {}
 resource "aws_guardduty_detector" "sec-tooling2" {}
 
 resource "aws_guardduty_organization_admin_account" "sec-tooling2" {
-  depends_on = [aws_organizations_organization.sec-tooling2]
+  depends_on = [aws_organizations_organization.landing-zones]
   admin_account_id = data.aws_caller_identity.current.account_id
 }
 
@@ -21,7 +21,7 @@ resource "aws_macie2_organization_admin_account" "sec-tooling2" {
 # Enable SecurityHub
 
 resource "aws_securityhub_organization_admin_account" "sec-tooling2" {
-  depends_on = [aws_organizations_organization.sec-tooling2]
+  depends_on = [aws_organizations_organization.landing-zones]
   admin_account_id = data.aws_caller_identity.current.account_id
 }
 
