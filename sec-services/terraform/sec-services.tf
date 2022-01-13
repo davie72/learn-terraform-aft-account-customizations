@@ -3,7 +3,7 @@ data "aws_caller_identity" "current" {}
 # Enable GuardDuty
 
 resource "aws_organizations_organization" "sec-tooling" {
-  aws_service_access_principals = ["guardduty.amazonaws.com"]
+  aws_service_access_principals = ["guardduty.amazonaws.com", "securityhub.amazonaws.com"]
   feature_set                   = "ALL"
 }
 
@@ -24,11 +24,6 @@ resource "aws_macie2_organization_admin_account" "sec-tooling" {
 }
 
 # Enable SecurityHub
-
-resource "aws_organizations_organization" "sec-tooling" {
-  aws_service_access_principals = ["securityhub.amazonaws.com"]
-  feature_set                   = "ALL"
-}
 
 resource "aws_securityhub_account" "sec-tooling" {}
 
